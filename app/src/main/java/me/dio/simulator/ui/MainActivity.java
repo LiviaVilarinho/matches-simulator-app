@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private MatchesApi matchesApi;
-    private MatchesAdapter matchesAdapter;
+    private MatchesAdapter matchesAdapter = new MatchesAdapter(Collections.emptyList());
 
 
     @Override
@@ -69,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupFloatingActionButton() {
         binding.fabSimulate.setOnClickListener(view -> {
+
             view.animate().rotationBy(360).setDuration(500).setListener(new AnimatorListenerAdapter() {
                 @Override
                 public void onAnimationEnd(Animator animation) {
@@ -81,7 +83,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+
         });
+
     }
 
     private void findMatchesFromApi() {
